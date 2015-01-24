@@ -202,7 +202,7 @@ function creaPostDeBloqueTexto($conn){
                 }
         }
         $result->close();
-        echo $contadorPost . " posts guardados en el WP correctamente.</br>";
+        echo $contadorPost . " posts de BloqueDeTexto guardados en el WP correctamente.</br>";
 }
 
 /** Metodo encagado de recorrer la tabla de Publicaciones adecuadamente e ir creado los post
@@ -292,22 +292,100 @@ function creaPostDePublicaciones($conn){
         echo $contadorPost . " posts (de Publicaciones) guardados en el WP correctamente.</br>";
 }
 
-if (isset($_GET['posts'])){
+/** Metodo encagado de recorrer la tabla de Contenido_Agenda adecuadamente e ir creado los post
+ *  en su respectiva categoria (tambien creandola si es necesario) y en la fecha aduecuada
+ */
+function creaPostDeContenidoAgenda($conn){
+        $nuevoPost = array();
 
-        //creaPostDeBloqueTexto($connection);
+        $query = "SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
+                    FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
+                           ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
+                    WHERE CONTENIDO_AGENDA.id IN (81, 50, 51, 16)";
 
-        //creaPostDeURLsEnITMT($connection);
+        // Select all the rows in the query
+        $result = $conn->query($query);
+        if (!$result) { echo 'Invalid query: ' . $conn->connect_error; }
 
-        //creaPostDePublicaciones($connection);
+        //$numRegistros = $result->num_rows;
+        $contadorPost = 0;
+        while( $registro = $result->fetch_row() ) {
+
+                $titulo = $registro[0];
+                $contenido = $registro[1];
+                $subtitulo = $registro[2];
+                $lugar = $registro[3];
+                $fecha = $registro[4];
+                $url = $registro[5];
+
+                $idCategoria = creaCategoria('Agenda', $conn);
+
+                //Creo el texto del POST
+                if ($contenido){
+                    $texto = $contenido . "</br>";
+                } else {
+                    $texto = $titulo . "</br>";
+                }
+                if ($subtitulo){
+                    $texto .= $subtitulo . "</br>";
+                }
+                if ($lugar){
+                    $texto .= "Lugar: " . $lugar . "</br>";
+                }
+                if ($fecha){
+                    $texto .= "Fecha: " . $fecha . "</br>";
+                }
+                if ($url && str_startsWith($url, 'http://')){
+                    $texto .= "Enlace: <a href='" . $url . "' target='_blank'>" . $url . "</a></br>";
+                }
+
+                //Compongo el POST
+                $nuevoPost['post_author'] = 1;
+                $nuevoPost['post_content'] = $texto;
+                $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
+                $nuevoPost['post_status'] = 'publish';
+                $nuevoPost['post_title'] = $titulo;
+                $nuevoPost['post_category'] = $idCategoria; // array(8,39);
+                //$nuevoPost['tags_input'] = 
+
+                wp_insert_post($nuevoPost,true);
+                if ( is_wp_error($result) ) {
+                        echo $result->get_error_message();
+                        echo "Titulo -> " . $titulo . "</br>";
+                        echo "Texto  -> " . $texto . "</br>";
+                } else {
+                        $contadorPost++;
+                }
+        }
+        $result->close();
+        echo $contadorPost . " posts (de ContenidoAgenda) guardados en el WP correctamente.</br>";
+}
+
+if (isset($_GET['BloqueTexto'])){
+    creaPostDeBloqueTexto($connection);
+
+} elseif (isset($_GET['URLsEnITMT'])){
+    creaPostDeURLsEnITMT($connection);
+
+} elseif (isset($_GET['Publicaciones'])){
+    //creaPostDePublicaciones($connection);
+    echo "Aun no tengo estos archivos.";
+
+} elseif (isset($_GET['ContenidoAgenda'])){
+    creaPostDeContenidoAgenda($connection);
 
 } elseif (isset($_GET['categoria'])) {
-        $res = creaCategoriaOri(1255, $connection);
-        var_dump($res);
+    $res = creaCategoriaOri(1255, $connection);
+    var_dump($res);
+
 } else {
-        echo '  Haz clic para iniciar el proceso
-                <form action="' . $_SERVER['PHP_SELF'] . '">
-                        <input type="submit" name="posts" value="Crear posts"/>
-                        <input type="submit" name="categoria" value="Crear categorias"/>
-                </form>';
+    echo '  Haz clic para iniciar el proceso
+            <form action="' . $_SERVER['PHP_SELF'] . '">
+                    <input type="submit" name="BloqueTexto" value="Crear posts de BloqueTexto"/>
+                    <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
+                    <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
+                    <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
+                    <input type="submit" name="categoria" value="Crear categorias"/>
+            </form>';
 }
 ?>
