@@ -89,7 +89,7 @@ function creaCategoria($nombreCategoria, $conn){
         if ($term !== 0 && $term !== null) {
             // La categoria ya existe
             // term_exists(cat, tax) -> Returns an array if the pairing exists. (format: array('term_id'=>term id, 'term_taxonomy_id'=>taxonomy id))
-            $res[] = $term[0];
+            $res[] = $term['term_id'];
         } else {
             //La categoria NO existe
             $res[] = wp_create_category( $nombreCategoria );
@@ -114,7 +114,8 @@ function creaPostDeURLsEnITMT($conn){
                         FROM ITMT JOIN ITMT_I ON ITMT.id = ITMT_I.id
                         WHERE ITMT.link_externo is not null
                         AND ITMT_I.titulo is not null
-                        AND ITMT_I.id_idioma = 0";
+                        AND ITMT_I.id_idioma = 0
+                        AND ITMT_I.id IN (1886, 1742, 2238)";
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -128,12 +129,12 @@ function creaPostDeURLsEnITMT($conn){
                 $url = $registro[1];
                 $idCategoriaOri = $registro[2];
                 
-                $idCategoria = creaCategoriaOri($idCategoriaOri, $conn);
+                $idCategoria = creaCategoria("Enlaces", $conn);
 
                 $texto = '<a href="' . $url . '" target="_blank">' . $titulo . '</a>';
 
                 $nuevoPost['post_author'] = 1;
-                $nuevoPost['post_content'] = $texto;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
                 $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
@@ -153,6 +154,13 @@ function creaPostDeURLsEnITMT($conn){
         echo $contadorPost . " posts(URL) guardados en el WP correctamente.</br>";
 }
 
+/** Esta funcion recibe como parametro lo que va a ser el contenido del post y le introduce un HTML
+ *  para identificarlo posteriormente y poder aplicarle estilos CSS sin afectar al resto de contenidos.
+ */
+function identificaContenidoPostAntiguo($texto){
+    return "<div class='postAntiguo'>" . $texto . '</div>';
+}
+
 /** Metodo encagado de recorrer la tabla de BLOQUETEXTO adecuadamente e ir creado los post
  *  en su respectiva categoria (tambien creandola si es necesario)
  */
@@ -163,7 +171,8 @@ function creaPostDeBloqueTexto($conn){
                         FROM BLOQUETEXTO_I JOIN BLOQUETEXTO ON BLOQUETEXTO_I.id = BLOQUETEXTO.id
                         WHERE id_idioma = 0
                         AND texto IS NOT NULL
-                        AND titulo IS NOT NULL";
+                        AND titulo IS NOT NULL
+                        AND BLOQUETEXTO_I.id IN (4092, 3791, 3251)";
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -182,10 +191,10 @@ function creaPostDeBloqueTexto($conn){
                 $texto = $registro[1];
                 $idCategoriaOri = $registro[2];
                 
-                $idCategoria = creaCategoriaOri($idCategoriaOri, $conn);
+                $idCategoria = creaCategoria("Intercambia", $conn);
 
                 $nuevoPost['post_author'] = 1;
-                $nuevoPost['post_content'] = $texto;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
                 $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
@@ -272,7 +281,7 @@ function creaPostDePublicaciones($conn){
 
                 //Compongo el POST
                 $nuevoPost['post_author'] = 1;
-                $nuevoPost['post_content'] = $texto;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
                 $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
@@ -301,7 +310,7 @@ function creaPostDeContenidoAgenda($conn){
         $query = "SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
                     FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
                            ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
-                    WHERE CONTENIDO_AGENDA.id IN (81, 50, 51, 16)";
+                    WHERE CONTENIDO_AGENDA.id IN (26, 36, 399, 414)";
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -341,7 +350,7 @@ function creaPostDeContenidoAgenda($conn){
 
                 //Compongo el POST
                 $nuevoPost['post_author'] = 1;
-                $nuevoPost['post_content'] = $texto;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
                 $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
@@ -374,8 +383,12 @@ if (isset($_GET['BloqueTexto'])){
 } elseif (isset($_GET['ContenidoAgenda'])){
     creaPostDeContenidoAgenda($connection);
 
-} elseif (isset($_GET['categoria'])) {
+} elseif (isset($_GET['categorias'])) {
     $res = creaCategoriaOri(1255, $connection);
+    var_dump($res);
+
+} elseif (isset($_GET['unaCategoria'])) {
+    $res = creaCategoria( "MiCategoria", $connection);
     var_dump($res);
 
 } else {
@@ -385,7 +398,8 @@ if (isset($_GET['BloqueTexto'])){
                     <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
                     <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
                     <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
-                    <input type="submit" name="categoria" value="Crear categorias"/>
+                    <input type="submit" name="categorias" value="Crear categorias"/>
+                    <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
             </form>';
 }
 ?>
