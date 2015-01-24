@@ -14,7 +14,7 @@ echo "Limpio tildes, enies y demas..."
 cat $archivo        | sed -e "s/á/\&aacute;/g" | sed -e "s/é/\&eacute;/g" | sed -e "s/í/\&iacute;/g" | sed -e "s/ó/\&oacute;/g" | sed -e "s/ú/\&uacute;/g" | sed -e "s/ñ/\&ntilde;/g" > ${archivo}minus
 cat ${archivo}minus | sed -e "s/Á/\&Aacute;/g" | sed -e "s/É/\&Eacute;/g" | sed -e "s/Í/\&Iacute;/g" | sed -e "s/Ó/\&Oacute;/g" | sed -e "s/Ú/\&Uacute;/g" | sed -e "s/Ñ/\&Ntilde;/g" > ${archivo}mayus
 
-cat ${archivo}mayus | sed -e "s/º/\&deg;/g" | sed -e "s/ª/\&ordf;/g" > ${archivo}0
+cat ${archivo}mayus | sed -e "s/º/\&deg;/g" | sed -e "s/ª/\&ordf;/g" | sed -e 's/«/\"/g' | sed -e 's/»/\"/g' > ${archivo}0
 
 rm ${archivo}minus
 rm ${archivo}mayus

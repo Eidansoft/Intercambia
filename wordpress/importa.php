@@ -317,7 +317,7 @@ function creaPostDeListaDescarga($conn){
                     AND NOT (LISTA_DESCARGA_I.texto IS null
                              AND LISTA_DESCARGA.url IS null
                              AND LISTA_DESCARGA.url_titulo IS null)
-                    AND LISTA_DESCARGA.id IN (1015, 1053, 1658)";
+                    AND LISTA_DESCARGA.id IN (1015, 1053, 1658, 996)";
 
         // Select all the rows in the query
         $result = $conn->query($query);
