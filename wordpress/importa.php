@@ -310,7 +310,7 @@ function creaPostDeContenidoAgenda($conn){
         $query = "SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
                     FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
                            ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
-                    WHERE CONTENIDO_AGENDA.id IN (26, 36, 399, 414)";
+                    WHERE CONTENIDO_AGENDA.id IN (26, 36, 399, 414, 129, 165, 360)";
 
         // Select all the rows in the query
         $result = $conn->query($query);

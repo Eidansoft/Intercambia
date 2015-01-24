@@ -40,9 +40,22 @@ WHERE ((PUBLICACIONES.url IS NOT null
        		AND PUBLICACIONES.url != 'NO')
        OR PUBLICACIONES.pdf IS NOT null)
 
-# Obtener todos los contenidos de Agenda
+# Obtener todos los contenidos de Agenda. Agrupo por URL porque en la aplicacion original repetian la misma entrada para que apareciera varias veces en diferentes fechas
+# Le añado tambien las que aunque no tienen URL, pero tienen una buena explicacion en el contenido o en el subtitulo.
 SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
 FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
 	   ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
 WHERE CONTENIDO_AGENDA_I.titulo IS NOT null
+	   AND CONTENIDO_AGENDA.url IS NOT null
+GROUP BY CONTENIDO_AGENDA.url
+
+UNION
+
+SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
+FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
+	   ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
+WHERE CONTENIDO_AGENDA_I.titulo IS NOT null
+		AND CONTENIDO_AGENDA.url IS null
+        AND (CONTENIDO_AGENDA_I.contenido IS NOT null
+             OR CONTENIDO_AGENDA_I.subtitulo IS NOT null)
 
