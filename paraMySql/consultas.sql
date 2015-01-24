@@ -6,4 +6,37 @@ FROM ITMT_I JOIN ITMT ON ITMT.id = ITMT_I.id
 WHERE ITMT_I.id_idioma = 0
 AND ITMT.id_anterior NOT IN (
     SELECT ID FROM ITMT_I
-    )
+    );
+
+# Todos los post de bloqueTexto que me interesan (en castellano)
+SELECT BLOQUETEXTO_I.titulo, BLOQUETEXTO_I.texto, BLOQUETEXTO.id_itmt as idcategoria
+FROM BLOQUETEXTO_I JOIN BLOQUETEXTO ON BLOQUETEXTO_I.id = BLOQUETEXTO.id
+WHERE id_idioma = 0
+AND texto IS NOT NULL
+AND titulo IS NOT NULL;
+
+#Obtener los datos que me interesan para una categoria dada
+SELECT ITMT.id, ITMT_I.titulo, ITMT.id_anterior AS idPadre
+FROM ITMT JOIN ITMT_I ON ITMT.id = ITMT_I.id
+WHERE ITMT.id = " . $idCategoriaOri . "
+AND ITMT_I.id_idioma = 0;
+
+#Obtener las publicaciones que tienen asociado un PDF o un enlace; O aquellas que tienen una reseña valida
+SELECT PUBLICACIONES_I.titulo, PUBLICACIONES_I.resenia, PUBLICACIONES.autor, PUBLICACIONES.editorial, PUBLICACIONES.anio, PUBLICACIONES.isbn, PUBLICACIONES.url, PUBLICACIONES.imagen, PUBLICACIONES.pdf, PUBLICACIONES_TIPOS_I.nombre categoria
+FROM PUBLICACIONES_I JOIN PUBLICACIONES
+		ON PUBLICACIONES_I.id = PUBLICACIONES.id
+     JOIN PUBLICACIONES_TIPOS_I ON PUBLICACIONES_TIPOS_I.id = PUBLICACIONES.id_tipo
+WHERE ((PUBLICACIONES.url IS null OR PUBLICACIONES.url = 'NO')
+       AND PUBLICACIONES.pdf IS null)
+       AND PUBLICACIONES_I.resenia IS NOT null
+
+UNION
+
+SELECT PUBLICACIONES_I.titulo, PUBLICACIONES_I.resenia, PUBLICACIONES.autor, PUBLICACIONES.editorial, PUBLICACIONES.anio, PUBLICACIONES.isbn, PUBLICACIONES.url, PUBLICACIONES.imagen, PUBLICACIONES.pdf, PUBLICACIONES_TIPOS_I.nombre categoria
+FROM PUBLICACIONES_I JOIN PUBLICACIONES
+		ON PUBLICACIONES_I.id = PUBLICACIONES.id
+     JOIN PUBLICACIONES_TIPOS_I ON PUBLICACIONES_TIPOS_I.id = PUBLICACIONES.id_tipo
+WHERE ((PUBLICACIONES.url IS NOT null
+       		AND PUBLICACIONES.url != 'NO')
+       OR PUBLICACIONES.pdf IS NOT null)
+
