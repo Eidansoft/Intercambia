@@ -2,6 +2,8 @@
 include ('./wp-config.php');
 include ('./wp-admin/includes/taxonomy.php');
 
+define("RUTA_FILES", './wp-content/uploads/oldIntercambia');
+
 //Configuracion de la BD con los datos
 $host="localhost";
 $username="root";
@@ -83,7 +85,7 @@ function creaCategoriaOri($idCategoriaOri, $conn){
  *  Recibe un nombre de categoria, busca este nombre entre las categorias de WP, si no existe, la crea y devuelve su ID.
  *  Si ya existia, devuelve su ID en un array
 */
-function creaCategoria($nombreCategoria, $conn){
+function creaCategoria($nombreCategoria, $conn, $categoriaPadre = null){
         $res = array();
         $term = term_exists($nombreCategoria, 'category');
         if ($term !== 0 && $term !== null) {
@@ -92,7 +94,7 @@ function creaCategoria($nombreCategoria, $conn){
             $res[] = $term['term_id'];
         } else {
             //La categoria NO existe
-            $res[] = wp_create_category( $nombreCategoria );
+            $res[] = wp_create_category( $nombreCategoria, $categoriaPadre );
         }
         return $res;
 
@@ -249,7 +251,8 @@ function creaPostDePublicaciones($conn){
                 $pdf = $registro[8];
                 $categoria = $registro[9];
 
-                $idCategoria = creaCategoria($categoria, $conn);
+                $catPadre = creaCategoria( "Publicaciones", $connection );
+                $idCategoria = creaCategoria($categoria, $conn, end($catPadre) );
 
                 //Creo el texto del POST
                 if ($resenia){
@@ -300,6 +303,85 @@ function creaPostDePublicaciones($conn){
         $result->close();
         echo $contadorPost . " posts (de Publicaciones) guardados en el WP correctamente.</br>";
 }
+
+/** Metodo encagado de recorrer la tabla de ListaDescarga adecuadamente e ir creado los post
+ *  
+ */
+function creaPostDeListaDescarga($conn){
+        $nuevoPost = array();
+
+        $query = "SELECT LISTA_DESCARGA_I.titulo, LISTA_DESCARGA_I.texto, LISTA_DESCARGA.id_itmt, LISTA_DESCARGA.url, LISTA_DESCARGA.url_titulo
+                    FROM LISTA_DESCARGA JOIN LISTA_DESCARGA_I
+                         ON LISTA_DESCARGA.id = LISTA_DESCARGA_I.id
+                    WHERE LISTA_DESCARGA_I.id_idioma = 0
+                    AND NOT (LISTA_DESCARGA_I.texto IS null
+                             AND LISTA_DESCARGA.url IS null
+                             AND LISTA_DESCARGA.url_titulo IS null)
+                    AND LISTA_DESCARGA.id IN (1015, 1053, 1658)";
+
+        // Select all the rows in the query
+        $result = $conn->query($query);
+        if (!$result) { echo 'Invalid query: ' . $conn->connect_error; }
+
+        //$numRegistros = $result->num_rows;
+        $contadorPost = 0;
+        while( $registro = $result->fetch_row() ) {
+            $errores = false; //Bandera para detectar si alguno de los archivos que espero encontrar para este post me falla. En tal caso la levanto y no añado este post
+
+            $titulo = $registro[0];
+            $contenido = $registro[1];
+            $idITMT = $registro[2];
+            $url = $registro[3];
+            $urlTitulo = $registro[4];
+
+            $idCategoria = creaCategoria( 'Publicaciones', $conn);
+
+            //Creo el texto del POST
+            if ($contenido){
+                $texto = $resenia . "</br>";
+            } else {
+                $texto = $titulo . "</br>";
+            }
+            if ($url){
+                if( str_startsWith($url, 'http://')){
+                    $texto .= "Enlace: <a href='" . $url . "' target='_blank'>" . $url . "</a></br>";
+                } elseif (str_startsWith($url, '/archivos_secciones/') ) {
+                        if ( file_exists ( RUTA_FILES . $url ) ){
+                            $texto .= "Documento disponible: <a href='" . RUTA_FILES .  $url . "' target='_blank'>Descargar</a></br>";
+                        } else {
+                            echo "Error archivo no encontrado: " . $url . "<br/>";
+                            $errores = true;
+                        }
+                }
+            }
+            if ($urlTitulo && str_startsWith($urlTitulo, 'http://')){
+                $texto .= "M&aacute;s informaci&oacute;n: <a href='" . $urlTitulo . "' target='_blank'>" . $urlTitulo . "</a></br>";
+            }
+
+            if (! $errores ){
+                //Compongo el POST
+                $nuevoPost['post_author'] = 1;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
+                $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
+                $nuevoPost['post_status'] = 'publish';
+                $nuevoPost['post_title'] = $titulo;
+                $nuevoPost['post_category'] = $idCategoria; // array(8,39);
+                //$nuevoPost['tags_input'] = 
+
+                wp_insert_post($nuevoPost,true);
+                if ( is_wp_error($result) ) {
+                        echo $result->get_error_message();
+                        echo "Titulo -> " . $titulo . "</br>";
+                        echo "Texto  -> " . $texto . "</br>";
+                } else {
+                        $contadorPost++;
+                }
+            }
+        }
+        $result->close();
+        echo $contadorPost . " posts (de ListaDescarga) guardados en el WP correctamente.</br>";
+}
+
 
 /** Metodo encagado de recorrer la tabla de Contenido_Agenda adecuadamente e ir creado los post
  *  en su respectiva categoria (tambien creandola si es necesario) y en la fecha aduecuada
@@ -383,12 +465,17 @@ if (isset($_GET['BloqueTexto'])){
 } elseif (isset($_GET['ContenidoAgenda'])){
     creaPostDeContenidoAgenda($connection);
 
+} elseif (isset($_GET['ListaDescarga'])){
+    creaPostDeListaDescarga($connection);
+
 } elseif (isset($_GET['categorias'])) {
     $res = creaCategoriaOri(1255, $connection);
     var_dump($res);
 
 } elseif (isset($_GET['unaCategoria'])) {
     $res = creaCategoria( "MiCategoria", $connection);
+    var_dump($res);
+    $res = creaCategoria( "Mi otra Categoria", $connection, end($res) );
     var_dump($res);
 
 } else {
@@ -398,6 +485,7 @@ if (isset($_GET['BloqueTexto'])){
                     <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
                     <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
                     <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
+                    <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
                     <input type="submit" name="categorias" value="Crear categorias"/>
                     <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
             </form>';
