@@ -39,4 +39,10 @@ rm ${archivo}2
 mv ${archivo}3 SIN_HTML_$archivo
 
 echo "Archivo $archivo limpiado de HTML con exito :-)"
+
+echo ""
+echo "Secuencia de caracteres raros que quedan en el archivo:"
+cat SIN_HTML_$archivo | sed -e "s/[1234567890qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlLzZxXcCvVbBnNmM,\.\(\)'&;_-:]//g" | sed -e 's/[ "]//g' | sed -e 's/\///g' | tr -d '\r' | tr -d '\n'
+echo ""
+
 exit 0
