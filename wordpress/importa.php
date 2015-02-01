@@ -109,15 +109,14 @@ function creaCategoria($nombreCategoria, $conn, $categoriaPadre = null){
  *  en el campo link_externo asociado de la tabla ITMT. Para cada uno de ellos, crea un post cuyo titulo es el de
  *  la ITMT_I.titulo y el contenido es el mismo pero con un enlace HTML a la URL especificada.
  */
-function creaPostDeURLsEnITMT($conn){
+function creaPostDeURLsEnITMT($conn, $datosReales){
         $nuevoPost = array();
 
         $query = "SELECT ITMT_I.titulo, ITMT.link_externo, ITMT.id_anterior
                         FROM ITMT JOIN ITMT_I ON ITMT.id = ITMT_I.id
                         WHERE ITMT.link_externo is not null
                         AND ITMT_I.titulo is not null
-                        AND ITMT_I.id_idioma = 0
-                        AND ITMT_I.id IN (1886, 1742, 2238)";
+                        AND ITMT_I.id_idioma = 0 " . (!$datosReales ? "AND ITMT_I.id IN (1886, 1742, 2238)" : "");
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -166,15 +165,14 @@ function identificaContenidoPostAntiguo($texto){
 /** Metodo encagado de recorrer la tabla de BLOQUETEXTO adecuadamente e ir creado los post
  *  en su respectiva categoria (tambien creandola si es necesario)
  */
-function creaPostDeBloqueTexto($conn){
+function creaPostDeBloqueTexto($conn, $datosReales){
         $nuevoPost = array();
 
         $query = "SELECT BLOQUETEXTO_I.titulo, BLOQUETEXTO_I.texto, BLOQUETEXTO.id_itmt as idcategoria
                         FROM BLOQUETEXTO_I JOIN BLOQUETEXTO ON BLOQUETEXTO_I.id = BLOQUETEXTO.id
                         WHERE id_idioma = 0
                         AND texto IS NOT NULL
-                        AND titulo IS NOT NULL
-                        AND BLOQUETEXTO_I.id IN (4092, 3791, 3251)";
+                        AND titulo IS NOT NULL " . (!$datosReales ? "AND BLOQUETEXTO_I.id IN (4092, 3791, 3251)" : "");
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -221,7 +219,7 @@ function creaPostDeBloqueTexto($conn){
  *  PDF al que haga referencia exista o tenga una URL. Ademas si tiene imagen y existe
  *  la incluye al post
  */
-function creaPostDePublicaciones($conn){
+function creaPostDePublicaciones($conn, $datosReales){
         $nuevoPost = array();
 
 //TODO esta query es de prueba hasta que me manden los archivos que necesito
@@ -230,7 +228,7 @@ function creaPostDePublicaciones($conn){
                     FROM PUBLICACIONES_I JOIN PUBLICACIONES
                             ON PUBLICACIONES_I.id = PUBLICACIONES.id
                          JOIN PUBLICACIONES_TIPOS_I ON PUBLICACIONES_TIPOS_I.id = PUBLICACIONES.id_tipo
-                    WHERE PUBLICACIONES.id IN (81, 50, 51, 16)";
+                          " . (!$datosReales ? "WHERE PUBLICACIONES.id IN (81, 50, 51, 16)" : "");
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -307,7 +305,7 @@ function creaPostDePublicaciones($conn){
 /** Metodo encagado de recorrer la tabla de ListaDescarga adecuadamente e ir creado los post
  *  
  */
-function creaPostDeListaDescarga($conn){
+function creaPostDeListaDescarga($conn, $datosReales){
         $nuevoPost = array();
 
         $query = "SELECT LISTA_DESCARGA_I.titulo, LISTA_DESCARGA_I.texto, LISTA_DESCARGA.id_itmt, LISTA_DESCARGA.url, LISTA_DESCARGA.url_titulo
@@ -317,7 +315,7 @@ function creaPostDeListaDescarga($conn){
                     AND NOT (LISTA_DESCARGA_I.texto IS null
                              AND LISTA_DESCARGA.url IS null
                              AND LISTA_DESCARGA.url_titulo IS null)
-                    AND LISTA_DESCARGA.id IN (1015, 1053, 1658, 996)";
+                             " . (!$datosReales ? "AND LISTA_DESCARGA.id IN (1015, 1053, 1658, 996)" : "");
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -386,13 +384,13 @@ function creaPostDeListaDescarga($conn){
 /** Metodo encagado de recorrer la tabla de Contenido_Agenda adecuadamente e ir creado los post
  *  en su respectiva categoria (tambien creandola si es necesario) y en la fecha aduecuada
  */
-function creaPostDeContenidoAgenda($conn){
+function creaPostDeContenidoAgenda($conn, $datosReales){
         $nuevoPost = array();
 
         $query = "SELECT CONTENIDO_AGENDA_I.titulo, CONTENIDO_AGENDA_I.contenido, CONTENIDO_AGENDA_I.subtitulo, CONTENIDO_AGENDA_I.lugar, CONTENIDO_AGENDA.fecha, CONTENIDO_AGENDA.url
                     FROM CONTENIDO_AGENDA JOIN CONTENIDO_AGENDA_I
                            ON CONTENIDO_AGENDA.id = CONTENIDO_AGENDA_I.id_contenido
-                    WHERE CONTENIDO_AGENDA.id IN (26, 36, 399, 414, 129, 165, 360)";
+                           " . (!$datosReales ? "WHERE CONTENIDO_AGENDA.id IN (26, 36, 399, 414, 129, 165, 360)" : "");
 
         // Select all the rows in the query
         $result = $conn->query($query);
@@ -453,20 +451,20 @@ function creaPostDeContenidoAgenda($conn){
 }
 
 if (isset($_GET['BloqueTexto'])){
-    creaPostDeBloqueTexto($connection);
+    creaPostDeBloqueTexto($connection, isset($_GET['datosReales']));
 
 } elseif (isset($_GET['URLsEnITMT'])){
-    creaPostDeURLsEnITMT($connection);
+    creaPostDeURLsEnITMT($connection, isset($_GET['datosReales']));
 
 } elseif (isset($_GET['Publicaciones'])){
-    //creaPostDePublicaciones($connection);
+    //creaPostDePublicaciones($connection, isset($_GET['datosReales']));
     echo "Aun no tengo estos archivos.";
 
 } elseif (isset($_GET['ContenidoAgenda'])){
-    creaPostDeContenidoAgenda($connection);
+    creaPostDeContenidoAgenda($connection, isset($_GET['datosReales']));
 
 } elseif (isset($_GET['ListaDescarga'])){
-    creaPostDeListaDescarga($connection);
+    creaPostDeListaDescarga($connection, isset($_GET['datosReales']));
 
 } elseif (isset($_GET['categorias'])) {
     $res = creaCategoriaOri(1255, $connection);
@@ -478,16 +476,25 @@ if (isset($_GET['BloqueTexto'])){
     $res = creaCategoria( "Mi otra Categoria", $connection, end($res) );
     var_dump($res);
 
+} elseif (isset($_GET['importaTodo'])){
+    creaPostDeBloqueTexto($connection, isset($_GET['datosReales']));
+    creaPostDeURLsEnITMT($connection, isset($_GET['datosReales']));
+    //creaPostDePublicaciones($connection, isset($_GET['datosReales']));
+    creaPostDeContenidoAgenda($connection, isset($_GET['datosReales']));
+    creaPostDeListaDescarga($connection, isset($_GET['datosReales']));
+
 } else {
     echo '  Haz clic para iniciar el proceso
             <form action="' . $_SERVER['PHP_SELF'] . '">
-                    <input type="submit" name="BloqueTexto" value="Crear posts de BloqueTexto"/>
-                    <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
-                    <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
-                    <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
-                    <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
-                    <input type="submit" name="categorias" value="Crear categorias"/>
-                    <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
+                <input type="checkbox" name="datosReales" id="datosReales" /><label for="datosReales">Datos reales</label><br />
+                <input type="submit" name="BloqueTexto" value="Crear posts de BloqueTexto"/>
+                <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
+                <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
+                <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
+                <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
+                <input type="submit" name="categorias" value="Crear categorias"/>
+                <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
+                <input type="submit" name="importaTodo" value="Importarlo TODO (tarda un poco)"/>
             </form>';
 }
 ?>
