@@ -450,6 +450,111 @@ function creaPostDeContenidoAgenda($conn, $datosReales){
         echo $contadorPost . " posts (de ContenidoAgenda) guardados en el WP correctamente.</br>";
 }
 
+
+/** Metodo encagado de recorrer la carpeta de wp-content/uploads/oldIntercambia/bancorecursos
+ *  y para cada carpeta que encuentra, crea un POST toamndo el titulo y la descripcion del XML
+ *  correspondiente y enlazando con el archivo que corresponda.
+ */
+function creaPostDeCarpetaBancoRecursos($datosReales){
+        $nuevoPost = array();
+        $rutaBanco = RUTA_FILES . '/bancorecursos/';
+
+        $carpetas = scandir ( $rutaBanco );
+
+        // Para cda carpeta en el Banco de recursos
+        for($i=0; ($i < count($carpetas)) && ( $datosReales? true : $i<4 ); $i++) {
+
+            if ($carpetas[$i] != "." && $carpetas[$i] != ".."){ // Evitando los directorios punto
+
+                // Abro el XML para obtener el titulo y la descripcion
+                $nombreXML = $rutaBanco.$carpetas[$i]."/zip/metadata.xml";
+                $myfile = fopen($nombreXML, "r") or die("Error al abrir ".$nombreXML);
+                    $xml = fread($myfile,filesize($nombreXML));
+
+                    // Localizo el titulo del post
+                    $titulo = preg_replace ( '/.*<general>.*<title><string language="es">(.*)<\/string><\/title>.*<\/general>.*/s' , '$1' , $xml );
+                    $texto = preg_replace ( '/.*<general>.*<description><string language="es">(.*)<\/string><\/description>.*<\/general>.*/s' , '$1' , $xml );
+                    $texto = nl2br ( $texto ); // Los retornos de carro los convierto en <br />
+
+                fclose($myfile);
+
+
+                // Para cada archivo valido (PDF, AVI, MP4, MOV) añado al texto el enlace correspondiente
+                $archivosValidos = scandir ( $rutaBanco.$carpetas[$i]."/zip" );
+                $texto .= "<br />Archivos:<ul>";
+                for($j=0; $j < count($archivosValidos); $j++) {
+                    if ($archivosValidos[$j] != "." && $archivosValidos[$j] != ".." && !str_endsWith($archivosValidos[$j], ".xml")){ // Evitando los directorios punto y el XML
+                        $texto .= "<li><a href='" . $rutaBanco.$carpetas[$i]."/zip/".$archivosValidos[$j] . "' target='_blank'>Archivo " . $archivosValidos[$j] . "</a></li>";
+                    }
+                }
+                $texto .= "</ul>";
+
+                // Si existe miniatura
+                if (file_exists ( $rutaBanco.$carpetas[$i].'/thumbnail' )){
+                    $imagenes = scandir ( $rutaBanco.$carpetas[$i]."/thumbnail" );
+                    for($j=0; $j < count($imagenes); $j++) {
+                        if ($imagenes[$j] != "." && $imagenes[$j] != ".." && ( str_endsWith($imagenes[$j], ".jpg") || str_endsWith($imagenes[$j], ".jpeg") || str_endsWith($imagenes[$j], ".gif") || str_endsWith($imagenes[$j], ".bmp"))) { // Evitando los directorios punto y el XML
+                            $texto = "<img src='" . $rutaBanco.$carpetas[$i]."/thumbnail/".$imagenes[$j] . "' class='size-medium wp-image-20 alignleft' />" . $texto;
+                        }
+                    }
+               }
+                echo "ARCHIVO: " . $carpetas[$i] . "<br /><br />TITULO: " . $titulo . "<br /><br />TEXTO: " . $texto . "<hr />";
+            }
+        }
+
+        // $contadorPost = 0;
+        // while( $registro = $result->fetch_row() ) {
+
+        //         $titulo = $registro[0];
+        //         $contenido = $registro[1];
+        //         $subtitulo = $registro[2];
+        //         $lugar = $registro[3];
+        //         $fecha = $registro[4];
+        //         $url = $registro[5];
+
+        //         $idCategoria = creaCategoria('Agenda', $conn);
+
+        //         //Creo el texto del POST
+        //         if ($contenido){
+        //             $texto = $contenido . "</br>";
+        //         } else {
+        //             $texto = $titulo . "</br>";
+        //         }
+        //         if ($subtitulo){
+        //             $texto .= $subtitulo . "</br>";
+        //         }
+        //         if ($lugar){
+        //             $texto .= "Lugar: " . $lugar . "</br>";
+        //         }
+        //         if ($fecha){
+        //             $texto .= "Fecha: " . $fecha . "</br>";
+        //         }
+        //         if ($url && str_startsWith($url, 'http://')){
+        //             $texto .= "Enlace: <a href='" . $url . "' target='_blank'>" . $url . "</a></br>";
+        //         }
+
+        //         //Compongo el POST
+        //         $nuevoPost['post_author'] = 1;
+        //         $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
+        //         $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
+        //         $nuevoPost['post_status'] = 'publish';
+        //         $nuevoPost['post_title'] = $titulo;
+        //         $nuevoPost['post_category'] = $idCategoria; // array(8,39);
+        //         //$nuevoPost['tags_input'] = 
+
+        //         wp_insert_post($nuevoPost,true);
+        //         if ( is_wp_error($result) ) {
+        //                 echo $result->get_error_message();
+        //                 echo "Titulo -> " . $titulo . "</br>";
+        //                 echo "Texto  -> " . $texto . "</br>";
+        //         } else {
+        //                 $contadorPost++;
+        //         }
+        // }
+        // $result->close();
+        // echo $contadorPost . " posts (de ContenidoAgenda) guardados en el WP correctamente.</br>";
+}
+
 if (isset($_GET['BloqueTexto'])){
     creaPostDeBloqueTexto($connection, isset($_GET['datosReales']));
 
@@ -465,6 +570,9 @@ if (isset($_GET['BloqueTexto'])){
 
 } elseif (isset($_GET['ListaDescarga'])){
     creaPostDeListaDescarga($connection, isset($_GET['datosReales']));
+
+} elseif (isset($_GET['BancoRecursos'])){
+    creaPostDeCarpetaBancoRecursos( isset($_GET['datosReales']) );
 
 } elseif (isset($_GET['categorias'])) {
     $res = creaCategoriaOri(1255, $connection);
@@ -482,6 +590,7 @@ if (isset($_GET['BloqueTexto'])){
     //creaPostDePublicaciones($connection, isset($_GET['datosReales']));
     creaPostDeContenidoAgenda($connection, isset($_GET['datosReales']));
     creaPostDeListaDescarga($connection, isset($_GET['datosReales']));
+    creaPostDeCarpetaBancoRecursos( isset($_GET['datosReales']) );
 
 } else {
     echo '  Haz clic para iniciar el proceso
@@ -492,6 +601,7 @@ if (isset($_GET['BloqueTexto'])){
                 <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
                 <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
                 <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
+                <input type="submit" name="BancoRecursos" value="Crear posts del BancoRecursos"/>
                 <input type="submit" name="categorias" value="Crear categorias"/>
                 <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
                 <input type="submit" name="importaTodo" value="Importarlo TODO (tarda un poco)"/>
