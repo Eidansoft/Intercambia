@@ -83,6 +83,7 @@ function creaCategoriaOri($idCategoriaOri, $conn){
 
 /** Crea la categoria en el WP
  *  Recibe un nombre de categoria, busca este nombre entre las categorias de WP, si no existe, la crea y devuelve su ID.
+ *  Tambien puede recibir como parametro opcional el ID de la categoria padre.
  *  Si ya existia, devuelve su ID en un array
 */
 function creaCategoria($nombreCategoria, $categoriaPadre = null){
