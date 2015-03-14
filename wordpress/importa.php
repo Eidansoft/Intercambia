@@ -531,6 +531,116 @@ function creaPostDeCarpetaBancoRecursos( $datosReales ){
         echo $contadorPost . " posts (de Carpeta BancoRecursos) guardados en el WP correctamente.</br>";
 }
 
+/** Metodo encagado de crear la pagina con ID en BD pasado por parametro, y devuelve el ID de pagina en Wordpress.
+ */
+function creaPaginaEstaticaPorID($conn, $idPagina){
+    $idNuevoPost = null;
+    if( isset($conn) && isset($idPagina) ){
+        $nuevoPost = array();
+
+        $query = "SELECT PAGINAS_ESTATICAS.ID, PAGINAS_ESTATICAS.TITULO, PAGINAS_ESTATICAS.CONTENIDO, PAGINAS_ESTATICAS.CATEGORIA, IFNULL(tmp.HIJAS,0) HIJAS FROM PAGINAS_ESTATICAS
+                            LEFT JOIN (
+                                SELECT ID_PAGINA_PADRE, COUNT(*) HIJAS FROM ENLACES_PAGINAS_ESTATICAS 
+                                WHERE ID_PAGINA_PADRE = " . $idPagina . "
+                                GROUP BY ID_PAGINA_PADRE
+                                ) tmp
+                            ON PAGINAS_ESTATICAS.ID = tmp.ID_PAGINA_PADRE
+                        WHERE ID = " . $idPagina;
+
+        // Select all the rows in the query
+        $result = $conn->query($query);
+        if (!$result) { echo 'Invalid query: ' . $conn->connect_error; }
+
+        //Realmente la consulta solo devuelve un unico registro, por lo que realmente no es necesario el while
+        while( $registro = $result->fetch_row() ) {
+
+                //$id = $registro[0];
+                $titulo = $registro[1];
+                $contenido = $registro[2];
+                $categoria = $registro[3];
+                $paginaHijas = $registro[4];
+
+                $idCategoria = creaCategoria( $categoria );
+
+                //Creo el texto del POST
+                if ($contenido){
+                    $texto = $contenido . "</br>";
+                    if ( $paginaHijas > 0 ){
+                        $texto .= "<ul>";
+
+                        $subQuery = "SELECT ID_PAGINA_HIJA FROM ENLACES_PAGINAS_ESTATICAS
+                                    WHERE ID_PAGINA_PADRE = " . $idPagina;
+
+                        // Select all the rows in the query
+                        $subResult = $conn->query($subQuery);
+                        if (!$subResult) { echo 'Invalid query: ' . $conn->connect_error; }
+
+                        //Por cada ID de pagina hija
+                        while( $subRegistro = $subResult->fetch_row() ) {
+
+                                $idHija = $subRegistro[0];
+
+                                // Creo la pagina (y subpaginas que correspondan)
+                                $idPostHija = creaPaginaEstaticaPorID($conn, $idHija);
+
+                                //Anado los enlaces a la pagina padre hacia las paginas hijas correspondientes
+                                $texto .= "<li><a href='" . get_permalink( $idPostHija ) . "'>" . get_the_title( $idPostHija ) . "</a></li>";
+                        }
+
+                        $subResult->close();
+
+                        $texto .= "</ul>";
+                    }
+                }
+
+                //Compongo el POST
+                $nuevoPost['post_author'] = 1;
+                $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
+                $nuevoPost['post_type'] = 'page'; // 'post'; // el tipo puede ser entre otros, pagina o entrada
+                $nuevoPost['post_status'] = 'publish';
+                $nuevoPost['post_title'] = $titulo;
+                $nuevoPost['post_category'] = $idCategoria; // array(8,39);
+                //$nuevoPost['tags_input'] = 
+
+                $idNuevoPost = wp_insert_post($nuevoPost,true);
+                if ( is_wp_error($idNuevoPost) ) {
+                        echo $idNuevoPost->get_error_message();
+                        echo "Titulo -> " . $titulo . "</br>";
+                        echo "Texto  -> " . $texto . "</br>";
+                        $idNuevoPost = null; // para que se devuelva un null y se pueda detectar el error en la funcion que llama
+                }
+        }
+        $result->close();
+    } else {
+        echo "Error, parametros incorrectos al crear las Paginas Estaticas";
+    }
+    return $idNuevoPost;
+}
+
+/** Metodo encagado de obtener todas las paginas padre de la tabla PAGINAS_ESTATICAS y llamar al metodo que se dedica a crearlas
+ *  recursivamente junto con los enlaces a las subpaginas.
+ */
+function creaPaginasEstaticas($conn){
+    $nuevoPost = array();
+
+    $query = "SELECT ID
+                FROM PAGINAS_ESTATICAS
+                WHERE ID NOT IN (
+                    SELECT ID_PAGINA_HIJA FROM ENLACES_PAGINAS_ESTATICAS
+                    )";
+
+    // Select all the rows in the query
+    $result = $conn->query($query);
+    if (!$result) { echo 'Invalid query: ' . $conn->connect_error; }
+
+    while( $registro = $result->fetch_row() ) {
+
+            $id = $registro[0];
+            creaPaginaEstaticaPorID($conn, $id);
+    }
+    echo "Paginas estaticas creadas";
+}
+
 if (isset($_GET['BloqueTexto'])){
     creaPostDeBloqueTexto($connection, isset($_GET['datosReales']));
 
@@ -550,6 +660,9 @@ if (isset($_GET['BloqueTexto'])){
 } elseif (isset($_GET['BancoRecursos'])){
     creaPostDeCarpetaBancoRecursos( isset($_GET['datosReales']) );
 
+} elseif (isset($_GET['PaginasEstaticas'])){
+    creaPaginasEstaticas($connection);
+
 } elseif (isset($_GET['categorias'])) {
     $res = creaCategoriaOri(1255, $connection);
     var_dump($res);
@@ -567,6 +680,7 @@ if (isset($_GET['BloqueTexto'])){
     creaPostDeContenidoAgenda($connection, isset($_GET['datosReales']));
     creaPostDeListaDescarga($connection, isset($_GET['datosReales']));
     creaPostDeCarpetaBancoRecursos( isset($_GET['datosReales']) );
+    creaPaginasEstaticas($connection);
 
 } else {
     echo '  Haz clic para iniciar el proceso
@@ -578,6 +692,7 @@ if (isset($_GET['BloqueTexto'])){
                 <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
                 <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
                 <input type="submit" name="BancoRecursos" value="Crear posts del BancoRecursos"/>
+                <input type="submit" name="PaginasEstaticas" value="Crear posts del Paginas Estaticas"/>
                 <input type="submit" name="categorias" value="Crear categorias"/>
                 <input type="submit" name="unaCategoria" value="Crear una categoria de prueba"/>
                 <input type="submit" name="importaTodo" value="Importarlo TODO (tarda un poco)"/>
