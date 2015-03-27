@@ -88,14 +88,17 @@ function creaCategoriaOri($idCategoriaOri, $conn){
 */
 function creaCategoria($nombreCategoria, $categoriaPadre = null){
         $res = array();
-        $term = term_exists($nombreCategoria, 'category');
-        if ($term !== 0 && $term !== null) {
-            // La categoria ya existe
-            // term_exists(cat, tax) -> Returns an array if the pairing exists. (format: array('term_id'=>term id, 'term_taxonomy_id'=>taxonomy id))
-            $res[] = $term['term_id'];
-        } else {
-            //La categoria NO existe
-            $res[] = wp_create_category( $nombreCategoria, $categoriaPadre );
+        $categorias = explode( "," , $nombreCategoria  );
+        foreach ($categorias as $categoria){
+            $term = term_exists($categoria, 'category');
+            if ($term !== 0 && $term !== null) {
+                // La categoria ya existe
+                // term_exists(cat, tax) -> Returns an array if the pairing exists. (format: array('term_id'=>term id, 'term_taxonomy_id'=>taxonomy id))
+                $res[] = $term['term_id'];
+            } else {
+                //La categoria NO existe
+                $res[] = wp_create_category( $categoria, $categoriaPadre );
+            }
         }
         return $res;
 
