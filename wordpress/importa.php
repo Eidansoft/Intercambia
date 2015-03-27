@@ -134,7 +134,7 @@ function creaPostDeURLsEnITMT($conn, $datosReales){
                 $url = $registro[1];
                 $idCategoriaOri = $registro[2];
                 
-                $idCategoria = creaCategoria( "Enlaces" );
+                $idCategoria = creaCategoria( "Enlaces,Recursos" );
 
                 $texto = '<a href="' . $url . '" target="_blank">' . $titulo . '</a>';
 
@@ -336,7 +336,7 @@ function creaPostDeListaDescarga($conn, $datosReales){
             $url = $registro[3];
             $urlTitulo = $registro[4];
 
-            $idCategoria = creaCategoria( 'Publicaciones' );
+            $idCategoria = creaCategoria( 'Publicaciones,Recursos' );
 
             //Creo el texto del POST
             if ($contenido){
@@ -508,7 +508,7 @@ function creaPostDeCarpetaBancoRecursos( $datosReales ){
                         }
                     }
                     //echo "ARCHIVO: " . $carpetas[$i] . "<br /><br />TITULO: " . $titulo . "<br /><br />TEXTO: " . $texto . "<hr />";
-                    $idCategoria = creaCategoria( 'Banco de Recursos' );
+                    $idCategoria = creaCategoria( 'Banco de Recursos TIC,Recursos' );
 
                     //Compongo el POST
                     $nuevoPost['post_author'] = 1;
