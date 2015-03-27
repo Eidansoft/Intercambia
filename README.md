@@ -4,15 +4,19 @@ Migracion del portal antiguo al portal nuevo
 # Pasos para la instalación:
 
 * Descomprimir el Worpress (wordpress-4.1-es_ES.zip) en el servidor.
-* Descomprimir los temas en wordpress/wp-content/themes (themeResponsiveOriginal.zip y theme-responsive-intercambia.zip).
+* Descomprimir los temas en wordpress/wp-content/themes (theme-responsive-intercambia.zip).
 * Copiar los archivos del portal antiguo en wordpress/wp-content/uploads (oldIntercambia).
 
 * En el MySQL crear una nueva BD llamada "datosIntercambia".
-* En la BD datosIntercambia ejecutar los SQLs para crear las tablas y importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql, publicaciones.sql)
+* En la BD datosIntercambia ejecutar los SQLs para crear las tablas Intercambia/paraMySql/creacionTablas.sql
+* En la BD datosIntercambia ejecutar los SQLs para importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql, publicaciones.sql) todos comprimidos en Intercambia/paraMySql/datosTablas/datosIntercambia.sql.zip
 * Copiar el Script de Importacion a WP en wordpress/importa.php
+* Configurar el WP para que acceda a la Base de Datos en el archivo wordpress/wp-config.php
 
 * Ejecutar la instalación normal del WP accediendo con el navegador a wordpress/wp-admin/install.php se rellenan los datos y se procede con la instalación.
 * Acceder desde el navegador a wordpress/importa.php marcar la opcion de "Datos reales" y lanzar la importación haciendo clic en "Importar TODO"
+
+//TODO
 
 * Acceder al panel de administración del WP en wordpress/wp-admin
 * En el panel de administracion, "Apariencia -> Temas" Selecionamos y activamos el tema "Responsive-child"
