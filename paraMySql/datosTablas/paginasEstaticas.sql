@@ -572,3 +572,15 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (142, 'Premios y Convocatorias',		'', 'Canarias');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 (19,137),(19,138),(19,139),(19,140),(19,141),(19,142);
+
+
+-- La pagina de presentacion
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
+(143,	'Presentaci&oacute;n',	'
+<a href="wp-content/uploads/oldIntercambia/portada.png"><img class=" size-medium wp-image-10 alignright" src="wp-content/uploads/oldIntercambia/portada.png" alt="portada" width="300" height="273" /></a>
+INTERCAMBIA. Educar en femenino y en masculino, es un espacio virtual para compartir experiencias que reconocen los intereses, conocimientos y motivaciones de niñas, niños, hombres y mujeres en la educación. Está creado para facilitar el acceso y el intercambio de información y conocimiento sobre prácticas educativas que incluyen los saberes femeninos y masculinos.
+<br/>
+Surge de una iniciativa del Ministerio de Educación, Cultura y Deporte a través del CNiiE (Centro Nacional de Innovación e Investigación Educativa) y del Ministerio de Sanidad, Servicios Sociales e Igualdad a través del Instituto de la Mujer, en colaboración con los Organismos de Igualdad y las Administraciones Educativas de las Comunidades Autónomas. Cuenta con el apoyo del Fondo Social Europeo.
+<br/>
+El portal Intercambia está concebido como un “centro virtual de recursos temáticos” que permite difundir y acceder a aportaciones valiosas en el ámbito coeducativo.
+	',	'Intercambia');
