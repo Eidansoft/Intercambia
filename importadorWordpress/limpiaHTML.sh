@@ -23,7 +23,6 @@ cat ${archivo}1 | sed -e "s/<\/a>/@cie@/g" | sed -e "s/\(<a[^>]*\)>/\1@ap2@/g" |
 cat ${archivo}2 | sed -e "s/@ap1@/<a/g" | sed -e "s/@ap2@/>/g" | sed -e "s/@cie@/<\/a>/g" > ${archivo}3
 
 # Elimino los archivos temporales y dejo solo el resultante.
-rm ${archivo}0
 rm ${archivo}1
 rm ${archivo}2
 
