@@ -385,7 +385,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 	<li><a href="http://www.juntadeandalucia.es/institutodelamujer/index.php/informacion-y-atencion-128">Instituto Andaluz de la Mujer. Informaci&oacute;n y Atenci&oacute;n</a></li>
 	<li><a href="http://www.aragon.es/DepartamentosOrganismosPublicos/Organismos/InstitutoAragonesMujer/AreasTematicas/ch.ServiciosAsesorias.detalleDepartamento&#63;channelSelected=008089dc3e83b210VgnVCM100000450a15acRCRD">Instituto Aragon&eacute;s de la Mujer. Servicios y Asesor&iacute;as</a></li>
 	<li><a href="http://institutoasturianodelamujer.com/iam/servicios-2/">Instituto Asturiano de la Mujer. Servicios especializados en igualdad de oportunidades</a></li>
-	<li><a href="http://wrap.seigualdad.gob.es/recursos/search/SearchForm.action">Web de Recursos de Apoyo y Prevenci&oacute;n ante casos de violencia contra las mujeres y las ni&ntilde;as (WRAP) http://wrap.seigualdad.gob.es/recursos/search/SearchForm.action</a></li>
+	<li><a href="http://wrap.seigualdad.gob.es/recursos/search/SearchForm.action">Web de Recursos de Apoyo y Prevenci&oacute;n ante casos de violencia contra las mujeres y las ni&ntilde;as (WRAP)</a></li>
 </ol>
 	',	'Intercambia');
 
