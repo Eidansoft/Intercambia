@@ -603,7 +603,7 @@ function creaPaginaEstaticaPorID($conn, $idPagina){
                 //Compongo el POST
                 $nuevoPost['post_author'] = 1;
                 $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
-                $nuevoPost['post_type'] = 'page'; // 'post'; // el tipo puede ser entre otros, pagina o entrada
+                $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
                 $nuevoPost['post_category'] = $idCategoria; // array(8,39);
