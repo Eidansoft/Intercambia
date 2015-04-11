@@ -920,7 +920,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 
 <h2>INSTITUTO ESTAD&Iacute;STICO DE EXTREMADURA</h2>
 <ul>
-	<li><a href="http://estadistica.gobex.es/listadon2.php&#63;id=10">Informaci&oacute;n estad&iacuiacute;stica sobre Educaci&oacute;n, Formaci&oacute;n e Investigaci&oacute;n</a></li>
+	<li><a href="http://estadistica.gobex.es/listadon2.php&#63;id=10">Informaci&oacute;n estad&iacute;stica sobre Educaci&oacute;n, Formaci&oacute;n e Investigaci&oacute;n</a></li>
 	<li>El <a href="http://estadistica.gobex.es/contenido.php&#63;seccion=2&amp;pag=3">Anuario estad&iacute;stico</a> y <a href="http://estadistica.gobex.es/contenido.php&#63;pag=12">Extremadura en cifras</a> incluyen algunos datos desagregados por sexo y un apartado dedicado a la educaci&oacute;n.</li>
 </ul>
 
