@@ -2,26 +2,24 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
 (1,	'Comunidades Aut&oacute;nomas',	'',	'Comunidades Aut&oacute;nomas', 'page');
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
-(1,	'Comunidades Aut&oacute;nomas',	'',	'Comunidades Aut&oacute;nomas'),
-
-(2,	'Andaluc&iacute;a',			'', 'Comunidades Aut&oacute;nomas'),
-(3, 'Murcia',					'', 'Comunidades Aut&oacute;nomas'),
-(4, 'Extremadura',				'', 'Comunidades Aut&oacute;nomas'),
-(5, 'Castilla la Mancha',		'', 'Comunidades Aut&oacute;nomas'),
-(6, 'Comunidad Valenciana',		'', 'Comunidades Aut&oacute;nomas'),
-(7, 'Madrid',					'', 'Comunidades Aut&oacute;nomas'),
-(8, 'Castilla y Le&oacute;n',	'', 'Comunidades Aut&oacute;nomas'),
-(9, 'Arag&oacute;n',			'', 'Comunidades Aut&oacute;nomas'),
-(10, 'Catalu&ntilde;a',			'', 'Comunidades Aut&oacute;nomas'),
-(11, 'La Rioja',				'', 'Comunidades Aut&oacute;nomas'),
-(12, 'Navarra',					'', 'Comunidades Aut&oacute;nomas'),
-(13, 'Pa&iacute;s Vasco',		'', 'Comunidades Aut&oacute;nomas'),
-(14, 'Cantabria',				'', 'Comunidades Aut&oacute;nomas'),
-(15, 'Asturias',				'', 'Comunidades Aut&oacute;nomas'),
-(16, 'Galicia',					'', 'Comunidades Aut&oacute;nomas'),
-(17, 'Ceuta y Melilla',			'', 'Comunidades Aut&oacute;nomas'),
-(18, 'Islas Baleares',			'', 'Comunidades Aut&oacute;nomas'),
-(19, 'Canarias',				'', 'Comunidades Aut&oacute;nomas');
+(2,	'Andaluc&iacute;a',			'', 'Comunidades Aut&oacute;nomas,Andaluc&iacute;a'),
+(3, 'Murcia',					'', 'Comunidades Aut&oacute;nomas,Murcia'),
+(4, 'Extremadura',				'', 'Comunidades Aut&oacute;nomas,Extremadura'),
+(5, 'Castilla la Mancha',		'', 'Comunidades Aut&oacute;nomas,Castilla la Mancha'),
+(6, 'Comunidad Valenciana',		'', 'Comunidades Aut&oacute;nomas,Comunidad Valenciana'),
+(7, 'Madrid',					'', 'Comunidades Aut&oacute;nomas,Madrid'),
+(8, 'Castilla y Le&oacute;n',	'', 'Comunidades Aut&oacute;nomas,Castilla y Le&oacute;n'),
+(9, 'Arag&oacute;n',			'', 'Comunidades Aut&oacute;nomas,Arag&oacute;n'),
+(10, 'Catalu&ntilde;a',			'', 'Comunidades Aut&oacute;nomas,Catalu&ntilde;a'),
+(11, 'La Rioja',				'', 'Comunidades Aut&oacute;nomas,La Rioja'),
+(12, 'Navarra',					'', 'Comunidades Aut&oacute;nomas,Navarra'),
+(13, 'Pa&iacute;s Vasco',		'', 'Comunidades Aut&oacute;nomas,Pa&iacute;s Vasco'),
+(14, 'Cantabria',				'', 'Comunidades Aut&oacute;nomas,Cantabria'),
+(15, 'Asturias',				'', 'Comunidades Aut&oacute;nomas,Asturias'),
+(16, 'Galicia',					'', 'Comunidades Aut&oacute;nomas,Galicia'),
+(17, 'Ceuta y Melilla',			'', 'Comunidades Aut&oacute;nomas,Ceuta y Melilla'),
+(18, 'Islas Baleares',			'', 'Comunidades Aut&oacute;nomas,Islas Baleares'),
+(19, 'Canarias',				'', 'Comunidades Aut&oacute;nomas,Canarias');
 
 -- Enlaza la pagina de las comunidades con cada comunidad
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
