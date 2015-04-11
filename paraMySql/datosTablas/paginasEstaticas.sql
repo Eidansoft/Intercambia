@@ -24,7 +24,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 (1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19);
 
-Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
 (20,	'Intercambia',	'
 <h1>Objetivos</h1>
 <ul>
@@ -33,7 +33,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 	<li>Promover y difundir actividades formativas relacionadas con la igualdad de oportunidades entre hombres y mujeres y la coeducaci&oacute;n.</li>
 	<li>Proporcionar a la Administraciones Educativas y a los Organismos de Igualdad de las C.C.A.A. una herramienta de intercambio de conocimiento y de las experiencias en coeducaci&oacute;n.</li>
 </ul>
-	',	'Intercambia');
+	',	'Intercambia', 'page');
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (21,	'Encuentros Intercambia',	'
