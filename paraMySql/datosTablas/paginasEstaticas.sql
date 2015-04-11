@@ -1,3 +1,6 @@
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
+(1,	'Comunidades Aut&oacute;nomas',	'',	'Comunidades Aut&oacute;nomas', 'page');
+
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (1,	'Comunidades Aut&oacute;nomas',	'',	'Comunidades Aut&oacute;nomas'),
 
@@ -588,11 +591,11 @@ El portal Intercambia est&aacute; concebido como un centro virtual de recursos t
 
 
 
-Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
 (144, 'Estad&iacute;sticas', '
 <h2>&iquest;Qu&eacute; es&#63;</h2>
 Esta secci&oacute;n ofrece una selecci&oacute;n de fuentes estad&iacute;sticas en materia coeducativa y de igualdad de oportunidades en cuatro &aacute;mbitos: internacional, europeo, estatal y auton&oacute;mico. Adem&aacute;s aparecen documentos de inter&eacute;s descargables en formato pdf.
-	',	'Estad&iacute;sticas'),
+	',	'Estad&iacute;sticas', 'page'),
 
 (145, '&Aacute;mbito Internacional', '
 <ul>
