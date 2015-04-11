@@ -10,7 +10,7 @@ Migracion del portal antiguo al portal nuevo
 
 * En el MySQL crear una nueva BD llamada "datosIntercambia".
 * En la BD datosIntercambia ejecutar los SQLs para crear las tablas Intercambia/paraMySql/creacionTablas.sql
-* En la BD datosIntercambia ejecutar los SQLs para importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql, publicaciones.sql) todos comprimidos en dos archivos situados en "Intercambia/paraMySql/datosTablas/" llamados datosIntercambia1.sql.zip y datosIntercambia2.sql.zip.
+* En la BD datosIntercambia ejecutar los SQLs para importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql) todos comprimidos en dos archivos situados en "Intercambia/paraMySql/" llamados datosIntercambia1.sql.zip y datosIntercambia2.sql.zip.
 * Copiar el Script de Importacion a WP en wordpress/importa.php
 * Configurar el WP para que acceda a la Base de Datos en el archivo wordpress/wp-config.php
 
@@ -22,18 +22,19 @@ Migracion del portal antiguo al portal nuevo
 * En el panel de administracion, "Apariencia -> Temas" Selecionamos y activamos el tema "Responsive-child"
 * En el panel de administracion, "Apariencia -> Personalizar -> Portada estática" seleccionamos la opción "Una página estatica" y en "Portada" elegimos "Presentación". Por último clic en "Guardar y Publicar"
 * En el panel de administracion, "Apariencia -> Personalizar -> Imagen de Cabecera" Añadimos las imagenes de cabecera que están en wordpress/wp-content/uploads/oldIntercambia/cabeceras, habrá que selecionarlas una por una y al final elegir que las muestre al azar. Y clic en Guardar y Publicar.
-* En el panel de administracion, "Apariencia -> Opciones del tema -> Página de Inicio" Desmarca la opcion de sobreescribir
-* En el panel de administracion, "Apariencia -> Opciones del tema -> Página de Inicio" poner la pagina de inicio en el campo de "Llamada a la acción (URL)"
-* En el panel de administracion, "Apariencia -> Opciones del tema -> Scripts" Pegamos el codigo del GoogleAnalytics que esta en googleAnalytics.js Y hacemos clic en Guardar Opciones.
-* En el panel de administracion, "Apariencia -> Opciones del tema -> Distribuciones por defecto" Para las paginas estaticas seleccionamos "Pagina de ancho completo"
+* En el panel de administracion, "Apariencia -> Opciones del tema -> Scripts personalizados" Pegamos el codigo del GoogleAnalytics que esta en googleAnalytics.js Y hacemos clic en Guardar Opciones.
 * En el panel de administracion, "Apariencia -> Menús" Añadimos un nuevo menu, marcamos la opción de "Menú de la Cabecera" y le incluimos los elementos de:
 * * (Página) Intercambia
 * * (Enlace) Recursos -> #
-* * * (Categoría) 
+* * * (Categoría) Banco de Recursos TIC
+* * * (Categoría) Recursos
+* * * (Página) Estadísticas
 * * (Página) Comunidades Autónomas
 * * (Página) Igualdad en el Mundo
 * * (Categoría) Agenda
-* En el panel de administracion, "Apariencia -> Widget" Añadimos el Widget de "My Calendar: Proximos eventos" Y lo configuramos con 10 dias futuros y 2 pasados, bajo el nombre de Agenda.
+* En el panel de administracion, "Apariencia -> Widget" Quitamos el de "Entradas Recientes", "Comentarios recientes", "Archivos" y "Meta"
+* En el panel de administracion, "Plugins" Activamos el plugin de MyCalendar
+* En el panel de administracion, "Apariencia -> Widget" Añadimos el Widget de "My Calendar: Proximos eventos" Con el nombre de "Agenda" y lo configuramos con 10 dias futuros y 2 pasados, bajo el nombre de Agenda. (NOTA para que salga el widget hay que crear al menos un evento)
 
 
 
