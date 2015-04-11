@@ -544,7 +544,7 @@ function creaPaginaEstaticaPorID($conn, $idPagina){
     if( isset($conn) && isset($idPagina) ){
         $nuevoPost = array();
 
-        $query = "SELECT PAGINAS_ESTATICAS.ID, PAGINAS_ESTATICAS.TITULO, PAGINAS_ESTATICAS.CONTENIDO, PAGINAS_ESTATICAS.CATEGORIA, IFNULL(tmp.HIJAS,0) HIJAS FROM PAGINAS_ESTATICAS
+        $query = "SELECT PAGINAS_ESTATICAS.ID, PAGINAS_ESTATICAS.TITULO, PAGINAS_ESTATICAS.CONTENIDO, PAGINAS_ESTATICAS.CATEGORIA, IFNULL(tmp.HIJAS,0) HIJAS, PAGINAS_ESTATICAS.TIPO FROM PAGINAS_ESTATICAS
                             LEFT JOIN (
                                 SELECT ID_PAGINA_PADRE, COUNT(*) HIJAS FROM ENLACES_PAGINAS_ESTATICAS 
                                 WHERE ID_PAGINA_PADRE = " . $idPagina . "
@@ -565,6 +565,7 @@ function creaPaginaEstaticaPorID($conn, $idPagina){
                 $contenido = $registro[2];
                 $categoria = $registro[3];
                 $paginaHijas = $registro[4];
+                $tipo = $registro[5];
 
                 $idCategoria = creaCategoria( $categoria );
 
@@ -606,7 +607,7 @@ function creaPaginaEstaticaPorID($conn, $idPagina){
                 //Compongo el POST
                 $nuevoPost['post_author'] = 1;
                 $nuevoPost['post_content'] = identificaContenidoPostAntiguo($texto);
-                $nuevoPost['post_type'] = 'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
+                $nuevoPost['post_type'] = $tipo; //'post'; // 'page'; // el tipo puede ser entre otros, pagina o entrada
                 $nuevoPost['post_status'] = 'publish';
                 $nuevoPost['post_title'] = $titulo;
                 $nuevoPost['post_category'] = $idCategoria; // array(8,39);
