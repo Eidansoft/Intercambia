@@ -5,6 +5,7 @@ include ('./wp-admin/includes/taxonomy.php');
 // Quito limites de tiempo para la ejecucion del Script
 set_time_limit(0);
 
+//Esta es la rute donde se encuentran los archivos del antiguo intercambia en el nuevo wordpress
 define("RUTA_FILES", './wp-content/uploads/oldIntercambia');
 
 //Configuracion de la BD con los datos
@@ -480,7 +481,7 @@ function creaPostDeCarpetaBancoRecursos( $datosReales ){
                 $nombreXML = $rutaBanco.$carpetas[$i]."/zip/metadata.xml";
                 $myfile = fopen($nombreXML, "r");
                 if (!$myfile){
-                    echo "Error al abrir ".$nombreXML;
+                    echo "Error al abrir ".$nombreXML . "<br/>";
                 } else {
                     $xml = fread($myfile,filesize($nombreXML));
 
