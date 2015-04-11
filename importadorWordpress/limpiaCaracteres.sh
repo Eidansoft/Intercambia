@@ -10,6 +10,8 @@ archivo=$1
 # Compruebo que el parametro es un archivo regular y que lo puedo leer
 [ ! -f $archivo ] || [ ! -r $archivo ] && echo "Error. Debes pasar como parametro el nombre del archivo a limpiar." && exit 1
 
+echo "Limpiando de caracteres raros el archivo $archivo"
+
 echo "Limpio tildes, enies y demas..." # minusculas y mayusculas
 cat $archivo        | sed -e "s/á/\&aacute;/g" | sed -e "s/é/\&eacute;/g" | sed -e "s/í/\&iacute;/g" | sed -e "s/ó/\&oacute;/g" | sed -e "s/ú/\&uacute;/g" | sed -e "s/ñ/\&ntilde;/g" > ${archivo}minus
 cat ${archivo}minus | sed -e "s/Á/\&Aacute;/g" | sed -e "s/É/\&Eacute;/g" | sed -e "s/Í/\&Iacute;/g" | sed -e "s/Ó/\&Oacute;/g" | sed -e "s/Ú/\&Uacute;/g" | sed -e "s/Ñ/\&Ntilde;/g" > ${archivo}mayus
@@ -30,7 +32,7 @@ echo "Limpio tabuladores"
 cat ${archivo}simbolos | sed -e "s/\t//g" > ${archivo}tabuladores
 
 echo "Limpio otros caracteres raros"
-cat ${archivo}tabuladores | sed -e "s/[Ã³©±àèâ]//g" > LIMPIO_${archivo}
+cat ${archivo}tabuladores | sed -e "s/[Ã³©±àèâ]//g" > ${archivo}_LIMPIO
 
 rm ${archivo}minus
 rm ${archivo}mayus
@@ -41,6 +43,6 @@ rm ${archivo}tabuladores
 rm ${archivo}simbolos
 
 echo ""
-echo "Secuencia de caracteres raros que quedan en el archivo:"
-cat LIMPIO_${archivo} | sed -e "s/[0-9]//g" | sed -e "s/[a-Z]//g" | sed -e "s/[,\.\(\)'&#;_-:+=]//g" | sed -e 's/[ "]//g' | sed -e 's/\///g' | tr -d '\r' | tr -d '\n'
+echo "Secuencia de caracteres raros que quedan en el archivo ( $archivo ):"
+cat ${archivo}_LIMPIO | sed -e "s/[0-9]//g" | sed -e "s/[a-Z]//g" | sed -e "s/[,\.\(\)'&#;_-:+=]//g" | sed -e 's/[ "]//g' | sed -e 's/\///g' | tr -d '\r' | tr -d '\n'
 echo ""

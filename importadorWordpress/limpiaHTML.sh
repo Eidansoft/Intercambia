@@ -10,7 +10,7 @@ archivo=$1
 # Compruebo que el parametro es un archivo regular y que lo puedo leer
 [ ! -f $archivo ] || [ ! -r $archivo ] && echo "Error. Debes pasar como parametro el nombre del archivo a limpiar." && exit 1
 
-echo "Limpio el HTML..."
+echo "Limpio el HTML ( $archivo )..."
 
 # Mete un intro extra entre cada registro
 #cat $archivo | sed 's/),/),\n/g' > ${archivo}1
@@ -26,7 +26,7 @@ cat ${archivo}2 | sed -e "s/@ap1@/<a/g" | sed -e "s/@ap2@/>/g" | sed -e "s/@cie@
 rm ${archivo}1
 rm ${archivo}2
 
-mv ${archivo}3 LIMPIO_$archivo
+mv ${archivo}3 ${archivo}_LIMPIO
 
 echo "Archivo $archivo limpiado de HTML con exito :-)"
 
