@@ -9,14 +9,12 @@ Migracion del portal antiguo al portal nuevo
 
 * En el MySQL crear una nueva BD llamada "datosIntercambia".
 * En la BD datosIntercambia ejecutar los SQLs para crear las tablas Intercambia/paraMySql/creacionTablas.sql
-* En la BD datosIntercambia ejecutar los SQLs para importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql, publicaciones.sql) todos comprimidos en Intercambia/paraMySql/datosTablas/datosIntercambia.sql.zip
+* En la BD datosIntercambia ejecutar los SQLs para importar los datos del antiguo portal (bloqueTexto_y_ITMs.sql, contenidoAgenda.sql, listaDescarga.sql, lom_langstring.sql, paginasEstaticas.sql, publicaciones.sql) todos comprimidos en dos archivos situados en "Intercambia/paraMySql/datosTablas/" llamados datosIntercambia1.sql.zip y datosIntercambia2.sql.zip.
 * Copiar el Script de Importacion a WP en wordpress/importa.php
 * Configurar el WP para que acceda a la Base de Datos en el archivo wordpress/wp-config.php
 
 * Ejecutar la instalación normal del WP accediendo con el navegador a wordpress/wp-admin/install.php se rellenan los datos y se procede con la instalación.
 * Acceder desde el navegador a wordpress/importa.php marcar la opcion de "Datos reales" y lanzar la importación haciendo clic en "Importar TODO"
-
-//TODO
 
 * Acceder al panel de administración del WP en wordpress/wp-admin
 * En el panel de administracion, "Apariencia -> Temas" Selecionamos y activamos el tema "Responsive-child"
