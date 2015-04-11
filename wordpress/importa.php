@@ -659,9 +659,9 @@ if (isset($_GET['BloqueTexto'])){
 } elseif (isset($_GET['URLsEnITMT'])){
     creaPostDeURLsEnITMT($connection, isset($_GET['datosReales']));
 
-} elseif (isset($_GET['Publicaciones'])){
+//} elseif (isset($_GET['Publicaciones'])){
     //creaPostDePublicaciones($connection, isset($_GET['datosReales']));
-    echo "Aun no tengo estos archivos.";
+//    echo "Aun no tengo estos archivos.";
 
 } elseif (isset($_GET['ContenidoAgenda'])){
     creaPostDeContenidoAgenda($connection, isset($_GET['datosReales']));
@@ -700,7 +700,7 @@ if (isset($_GET['BloqueTexto'])){
                 <input type="checkbox" name="datosReales" id="datosReales" /><label for="datosReales">Datos reales</label><br />
                 <input type="submit" name="BloqueTexto" value="Crear posts de BloqueTexto"/>
                 <input type="submit" name="URLsEnITMT" value="Crear posts de URLsEnITMT"/>
-                <input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/>
+                <!-- input type="submit" name="Publicaciones" value="Crear posts de Publicaciones"/ -->
                 <input type="submit" name="ContenidoAgenda" value="Crear posts de ContenidoAgenda"/>
                 <input type="submit" name="ListaDescarga" value="Crear posts de ListaDescarga"/>
                 <input type="submit" name="BancoRecursos" value="Crear posts del BancoRecursos"/>

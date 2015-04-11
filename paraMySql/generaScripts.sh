@@ -6,7 +6,7 @@
 zip creacionTablas.sql.zip creacionTablas.sql
 
 # Ahora para todos los SQL pequenios
-archivos="datosTablas/contenidoAgenda.sql datosTablas/listaDescarga.sql datosTablas/publicaciones.sql"
+archivos="datosTablas/contenidoAgenda.sql datosTablas/listaDescarga.sql"
 sql1="datosIntercambia1.sql"
 
 # Si existe el archivo intermedio lo elimino para empezar desde 0
