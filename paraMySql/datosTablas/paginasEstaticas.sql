@@ -576,7 +576,7 @@ Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 
 
 -- La pagina de presentacion
-Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
 (143,	'Presentaci&oacute;n',	'
 <a href="wp-content/uploads/oldIntercambia/portada.png"><img class=" size-medium wp-image-10 alignright" src="wp-content/uploads/oldIntercambia/portada.png" alt="portada" width="300" height="273" /></a>
 INTERCAMBIA. Educar en femenino y en masculino, es un espacio virtual para compartir experiencias que reconocen los intereses, conocimientos y motivaciones de ni&ntilde;as, ni&ntilde;os, hombres y mujeres en la educaci&oacute;n. Est&aacute; creado para facilitar el acceso y el intercambio de informaci&oacute;n y conocimiento sobre pr&aacute;cticas educativas que incluyen los saberes femeninos y masculinos.
@@ -584,4 +584,7 @@ INTERCAMBIA. Educar en femenino y en masculino, es un espacio virtual para compa
 Surge de una iniciativa del Ministerio de Educaci&oacute;n, Cultura y Deporte a trav&eacute;s del CNiiE (Centro Nacional de Innovaci&oacute;n e Investigaci&oacute;n Educativa) y del Ministerio de Sanidad, Servicios Sociales e Igualdad a trav&eacute;s del Instituto de la Mujer, en colaboraci&oacute;n con los Organismos de Igualdad y las Administraciones Educativas de las Comunidades Aut&oacute;nomas. Cuenta con el apoyo del Fondo Social Europeo.
 <br/>
 El portal Intercambia est&aacute; concebido como un centro virtual de recursos tem&aacute;ticos que permite difundir y acceder a aportaciones valiosas en el &aacute;mbito coeducativo.
-	',	'Intercambia');
+	',	'Intercambia', 'page');
+
+
+
