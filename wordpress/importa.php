@@ -2,6 +2,9 @@
 include ('./wp-config.php');
 include ('./wp-admin/includes/taxonomy.php');
 
+// Quito limites de tiempo para la ejecucion del Script
+set_time_limit(0);
+
 define("RUTA_FILES", './wp-content/uploads/oldIntercambia');
 
 //Configuracion de la BD con los datos
