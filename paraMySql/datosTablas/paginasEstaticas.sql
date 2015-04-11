@@ -97,9 +97,10 @@ Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 (20,23);
 
 
-Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
-(24,	'Igualdad en el Mundo',	'',	'Intercambia'),
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
+(24,	'Igualdad en el Mundo',	'',	'Intercambia', 'page');
 
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (25,	'Grupos de investigaci&oacute;n',	'
 <h2>Universitarios</h2>
 <ol>
