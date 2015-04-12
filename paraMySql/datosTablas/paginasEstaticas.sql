@@ -399,171 +399,154 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (35, 'Portales',					'',	'Andaluc&iacute;a'),
 (36, 'Planes y Proyectos',			'', 'Andaluc&iacute;a'),
 (37, 'Legislaci&oacute;n',			'', 'Andaluc&iacute;a'),
-(38, 'Estad&iacute;sticas',			'', 'Andaluc&iacute;a'),
 (39, 'Experiencias',				'', 'Andaluc&iacute;a'),
 (40, 'Premios y Convocatorias',		'', 'Andaluc&iacute;a');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(2,35),(2,36),(2,37),(2,38),(2,39),(2,40);
+(2,35),(2,36),(2,37),(2,39),(2,40);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (41, 'Portales',					'',	'Murcia'),
 (42, 'Planes y Proyectos',			'', 'Murcia'),
 (43, 'Legislaci&oacute;n',			'', 'Murcia'),
-(44, 'Estad&iacute;sticas',			'', 'Murcia'),
 (45, 'Experiencias',				'', 'Murcia'),
 (46, 'Premios y Convocatorias',		'', 'Murcia');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(3,41),(3,42),(3,43),(3,44),(3,45),(3,46);
+(3,41),(3,42),(3,43),(3,45),(3,46);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (47, 'Portales',					'',	'Extremadura'),
 (48, 'Planes y Proyectos',			'', 'Extremadura'),
 (49, 'Legislaci&oacute;n',			'', 'Extremadura'),
-(50, 'Estad&iacute;sticas',			'', 'Extremadura'),
 (51, 'Experiencias',				'', 'Extremadura'),
 (52, 'Premios y Convocatorias',		'', 'Extremadura');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(4,47),(4,48),(4,49),(4,50),(4,51),(4,52);
+(4,47),(4,48),(4,49),(4,51),(4,52);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (53, 'Portales',					'',	'Castilla la Mancha'),
 (54, 'Planes y Proyectos',			'', 'Castilla la Mancha'),
 (55, 'Legislaci&oacute;n',			'', 'Castilla la Mancha'),
-(56, 'Estad&iacute;sticas',			'', 'Castilla la Mancha'),
 (57, 'Experiencias',				'', 'Castilla la Mancha'),
 (58, 'Premios y Convocatorias',		'', 'Castilla la Mancha');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(5,53),(5,54),(5,55),(5,56),(5,57),(5,58);
+(5,53),(5,54),(5,55),(5,57),(5,58);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (59, 'Portales',					'',	'Comunidad Valenciana'),
 (60, 'Planes y Proyectos',			'', 'Comunidad Valenciana'),
 (61, 'Legislaci&oacute;n',			'', 'Comunidad Valenciana'),
-(62, 'Estad&iacute;sticas',			'', 'Comunidad Valenciana'),
 (63, 'Experiencias',				'', 'Comunidad Valenciana'),
 (64, 'Premios y Convocatorias',		'', 'Comunidad Valenciana');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(6,59),(6,60),(6,61),(6,62),(6,63),(6,64);
+(6,59),(6,60),(6,61),(6,63),(6,64);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (65, 'Portales',					'',	'Madrid'),
 (66, 'Planes y Proyectos',			'', 'Madrid'),
 (67, 'Legislaci&oacute;n',			'', 'Madrid'),
-(68, 'Estad&iacute;sticas',			'', 'Madrid'),
 (69, 'Experiencias',				'', 'Madrid'),
 (70, 'Premios y Convocatorias',		'', 'Madrid');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(7,65),(7,66),(7,67),(7,68),(7,69),(7,70);
+(7,65),(7,66),(7,67),(7,69),(7,70);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (71, 'Portales',					'',	'Castilla y Le&oacute;n'),
 (72, 'Planes y Proyectos',			'', 'Castilla y Le&oacute;n'),
 (73, 'Legislaci&oacute;n',			'', 'Castilla y Le&oacute;n'),
-(74, 'Estad&iacute;sticas',			'', 'Castilla y Le&oacute;n'),
 (75, 'Experiencias',				'', 'Castilla y Le&oacute;n'),
 (76, 'Premios y Convocatorias',		'', 'Castilla y Le&oacute;n');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(8,71),(8,72),(8,73),(8,74),(8,75),(8,76);
+(8,71),(8,72),(8,73),(8,75),(8,76);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (77, 'Portales',					'',	'Arag&oacute;n'),
 (78, 'Planes y Proyectos',			'', 'Arag&oacute;n'),
 (79, 'Legislaci&oacute;n',			'', 'Arag&oacute;n'),
-(80, 'Estad&iacute;sticas',			'', 'Arag&oacute;n'),
 (81, 'Experiencias',				'', 'Arag&oacute;n'),
 (82, 'Premios y Convocatorias',		'', 'Arag&oacute;n');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(9,77),(9,78),(9,79),(9,80),(9,81),(9,82);
+(9,77),(9,78),(9,79),(9,81),(9,82);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (83, 'Portales',					'',	'Catalu&ntilde;a'),
 (84, 'Planes y Proyectos',			'', 'Catalu&ntilde;a'),
 (85, 'Legislaci&oacute;n',			'', 'Catalu&ntilde;a'),
-(86, 'Estad&iacute;sticas',			'', 'Catalu&ntilde;a'),
 (87, 'Experiencias',				'', 'Catalu&ntilde;a'),
 (88, 'Premios y Convocatorias',		'', 'Catalu&ntilde;a');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(10,83),(10,84),(10,85),(10,86),(10,87),(10,88);
+(10,83),(10,84),(10,85),(10,87),(10,88);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (89, 'Portales',					'',	'La Rioja'),
 (90, 'Planes y Proyectos',			'', 'La Rioja'),
 (91, 'Legislaci&oacute;n',			'', 'La Rioja'),
-(92, 'Estad&iacute;sticas',			'', 'La Rioja'),
 (93, 'Experiencias',				'', 'La Rioja'),
 (94, 'Premios y Convocatorias',		'', 'La Rioja');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(11,89),(11,90),(11,91),(11,92),(11,93),(11,94);
+(11,89),(11,90),(11,91),(11,93),(11,94);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (95, 'Portales',					'',	'Navarra'),
 (96, 'Planes y Proyectos',			'', 'Navarra'),
 (97, 'Legislaci&oacute;n',			'', 'Navarra'),
-(98, 'Estad&iacute;sticas',			'', 'Navarra'),
 (99, 'Experiencias',				'', 'Navarra'),
 (100, 'Premios y Convocatorias',		'', 'Navarra');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(12,95),(12,96),(12,97),(12,98),(12,99),(12,100);
+(12,95),(12,96),(12,97),(12,99),(12,100);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (101, 'Portales',					'',	'Pa&iacute;s Vasco'),
 (102, 'Planes y Proyectos',			'', 'Pa&iacute;s Vasco'),
 (103, 'Legislaci&oacute;n',			'', 'Pa&iacute;s Vasco'),
-(104, 'Estad&iacute;sticas',			'', 'Pa&iacute;s Vasco'),
 (105, 'Experiencias',				'', 'Pa&iacute;s Vasco'),
 (106, 'Premios y Convocatorias',		'', 'Pa&iacute;s Vasco');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(13,101),(13,102),(13,103),(13,104),(13,105),(13,106);
+(13,101),(13,102),(13,103),(13,105),(13,106);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (107, 'Portales',					'',	'Cantabria'),
 (108, 'Planes y Proyectos',			'', 'Cantabria'),
 (109, 'Legislaci&oacute;n',			'', 'Cantabria'),
-(110, 'Estad&iacute;sticas',			'', 'Cantabria'),
 (111, 'Experiencias',				'', 'Cantabria'),
 (112, 'Premios y Convocatorias',		'', 'Cantabria');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(14,107),(14,108),(14,109),(14,110),(14,111),(14,112);
+(14,107),(14,108),(14,109),(14,111),(14,112);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (113, 'Portales',					'',	'Asturias'),
 (114, 'Planes y Proyectos',			'', 'Asturias'),
 (115, 'Legislaci&oacute;n',			'', 'Asturias'),
-(116, 'Estad&iacute;sticas',			'', 'Asturias'),
 (117, 'Experiencias',				'', 'Asturias'),
 (118, 'Premios y Convocatorias',		'', 'Asturias');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(15,113),(15,114),(15,115),(15,116),(15,117),(15,118);
+(15,113),(15,114),(15,115),(15,117),(15,118);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (119, 'Portales',					'',	'Galicia'),
 (120, 'Planes y Proyectos',			'', 'Galicia'),
 (121, 'Legislaci&oacute;n',			'', 'Galicia'),
-(122, 'Estad&iacute;sticas',			'', 'Galicia'),
 (123, 'Experiencias',				'', 'Galicia'),
 (124, 'Premios y Convocatorias',		'', 'Galicia');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(16,119),(16,120),(16,121),(16,122),(16,123),(16,124);
+(16,119),(16,120),(16,121),(16,123),(16,124);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (125, 'Portales',					'',	'Ceuta y Melilla'),
 (126, 'Planes y Proyectos',			'', 'Ceuta y Melilla'),
 (127, 'Legislaci&oacute;n',			'', 'Ceuta y Melilla'),
-(128, 'Estad&iacute;sticas',			'', 'Ceuta y Melilla'),
 (129, 'Experiencias',				'', 'Ceuta y Melilla'),
 (130, 'Premios y Convocatorias',		'', 'Ceuta y Melilla');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(17,125),(17,126),(17,127),(17,128),(17,129),(17,130);
+(17,125),(17,126),(17,127),(17,129),(17,130);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (131, 'Portales',					'',	'Islas Baleares'),
 (132, 'Planes y Proyectos',			'', 'Islas Baleares'),
 (133, 'Legislaci&oacute;n',			'', 'Islas Baleares'),
-(134, 'Estad&iacute;sticas',			'', 'Islas Baleares'),
 (135, 'Experiencias',				'', 'Islas Baleares'),
 (136, 'Premios y Convocatorias',		'', 'Islas Baleares');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(18,131),(18,132),(18,133),(18,134),(18,135),(18,136);
+(18,131),(18,132),(18,133),(18,135),(18,136);
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (137, 'Portales',					'',	'Canarias'),
@@ -573,7 +556,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (141, 'Experiencias',				'', 'Canarias'),
 (142, 'Premios y Convocatorias',		'', 'Canarias');
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
-(19,137),(19,138),(19,139),(19,140),(19,141),(19,142);
+(19,137),(19,138),(19,139),(19,141),(19,142);
 
 
 -- La pagina de presentacion
@@ -696,7 +679,7 @@ Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 
 
 Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
-(149, 'Andaluc&iacute;a', '
+(149, 'Estad&iacute;sticas Andaluc&iacute;a', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO ANDALUZ DE LA MUJER</h2>
 <ul>
@@ -719,7 +702,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 
 	',	'Estad&iacute;sticas,Andaluc&iacute;a'),
 
-(150, 'Arag&oacute;n', '
+(150, 'Estad&iacute;sticas Arag&oacute;n', '
 <h1>Estad&iacute;sticas</h1>
 <h2>DEPARTAMENTO DE EDUCACI&Oacute;N, UNIVERSIDAD, CULTURA Y DEPORTE</h2>
 <ul>
@@ -741,7 +724,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 
 	',	'Estad&iacute;sticas,Arag&oacute;n'),
 
-(151, 'Asturias', '
+(151, 'Estad&iacute;sticas Asturias', '
 <h1>Estad&iacute;sticas</h1>
 <h2>CONSEJER&Iacute;A DE EDUCACI&Oacute;N, CULTURA Y DEPORTE</h2>
 <ul>
@@ -772,7 +755,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Asturias'),
 
-(152, 'Canarias', '
+(152, 'Estad&iacute;sticas Canarias', '
 <h1>Estad&iacute;sticas</h1>
 <h2>VICECONSEJER&Iacute;A DE EDUCACI&Oacute;N, UNIVERSIDADES Y SOSTENIBILIDAD</h2>
 <ul>
@@ -794,7 +777,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Canarias'),
 
-(153, 'Cantabria', '
+(153, 'Estad&iacute;sticas Cantabria', '
 <h1>Estad&iacute;sticas</h1>
 <h2><a href="http://www.icane.es/">ICANE- INSTITUTO C&Aacute;NTABRO DE ESTAD&Iacute;STICA</a></h2>
 <ul>
@@ -812,7 +795,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 
 	',	'Estad&iacute;sticas,Cantabria'),
 
-(154, 'Castilla la Mancha', '
+(154, 'Estad&iacute;sticas Castilla la Mancha', '
 <h1>Estad&iacute;sticas</h1>
 <h2>CONSEJER&Iacute;A DE EDUCACI&Oacute;N, CULTURA Y DEPORTES</h2>
 <ul>
@@ -834,7 +817,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Castilla la Mancha'),
 
-(155, 'Castilla y Le&oacute;n', '
+(155, 'Estad&iacute;sticas Castilla y Le&oacute;n', '
 <h1>Estad&iacute;sticas</h1>
 	<h2>CONSEJER&Iacute;A DE EDUCACI&Oacute;N: EDUCACYL, PORTAL DE LA COMUNIDAD EDUCATIVA</h2>
 <ul>
@@ -861,7 +844,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Castilla y Le&oacute;n'),
 
-(156, 'Catalu&ntilde;a', '
+(156, 'Estad&iacute;sticas Catalu&ntilde;a', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUT CATAL&Agrave; DE LES DONES</h2>
 <ul>
@@ -876,7 +859,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Catalu&ntilde;a'),
 
-(157, 'Ceuta', '
+(157, 'Estad&iacute;sticas Ceuta', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO NACIONAL DE ESTAD&Iacute;STICA (INE)</h2>
 <ul>
@@ -891,7 +874,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Ceuta'),
 
-(158, 'Comunidad Valenciana', '
+(158, 'Estad&iacute;sticas Comunidad Valenciana', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO NACIONAL DE ESTAD&Iacute;STICA</h2>
 <ul>
@@ -912,7 +895,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 
 	',	'Estad&iacute;sticas,Comunidad Valenciana'),
 
-(159, 'Extremadura', '
+(159, 'Estad&iacute;sticas Extremadura', '
 <h1>Estad&iacute;sticas</h1>
 <h2>SECCI&Oacute;N DE ESTAD&Iacute;STICA EDUCATIVA, SERVICIO DE COORDINACI&Oacute;N EDUCATIVA DE LA SECRETAR&Iacute;A GENERAL DE EDUCACI&Oacute;N</h2>
 <ul>
@@ -931,7 +914,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Extremadura'),
 
-(160, 'Galicia', '
+(160, 'Estad&iacute;sticas Galicia', '
 <h1>Estad&iacute;sticas</h1>
 <h2>XUNTA DE GALICIA. CONSELLER&Iacute;A DE EDUCACI&Oacute;N, CULTURA E ORDENACI&Oacute;N UNIVERSITARIA</h2>
 <ul>
@@ -956,7 +939,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Galicia'),
 
-(161, 'Islas Baleares', '
+(161, 'Estad&iacute;sticas Islas Baleares', '
 <h1>Estad&iacute;sticas</h1>
 <h2>IBESTAT. INSTITUT D&rsquo;ESTAD&Iacute;STICA DE LES ILLES BALEARS</h2>
 <ul>
@@ -986,7 +969,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Islas Baleares'),
 
-(162, 'La Rioja', '
+(162, 'Estad&iacute;sticas La Rioja', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO NACIONAL DE ESTAD&Iacute;STICA</h2>
 <ul>
@@ -1008,7 +991,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,La Rioja'),
 
-(163, 'Madrid', '
+(163, 'Estad&iacute;sticas Madrid', '
 <h1>Estad&iacute;sticas</h1>
 <h2>CONSEJER&Iacute;A DE EDUCACI&Oacute;N, JUVENTUD Y DEPORTE</h2>
 <ul>
@@ -1024,7 +1007,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Madrid'),
 
-(164, 'Melilla', '
+(164, 'Estad&iacute;sticas Melilla', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO NACIONAL DE ESTAD&Iacute;STICA</h2>
 <ul>
@@ -1046,7 +1029,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Melilla'),
 
-(165, 'Murcia', '
+(165, 'Estad&iacute;sticas Murcia', '
 <h1>Estad&iacute;sticas</h1>
 <ul>
 	<li><a href="http://www.carm.es/econet/ecodata/toda_informacion.html">CENTRO REGIONAL DE ESTAD&Iacute;STICAS DE MURCIA</a></li>
@@ -1058,7 +1041,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Murcia'),
 
-(166, 'Navarra', '
+(166, 'Estad&iacute;sticas Navarra', '
 <h1>Estad&iacute;sticas</h1>
 <h2>INSTITUTO DE ESTAD&Iacute;STICA DE NAVARRA</h2>
 <ul>
@@ -1076,7 +1059,7 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 </ul>
 	',	'Estad&iacute;sticas,Navarra'),
 
-(167, 'Pa&iacute;s Vasco', '
+(167, 'Estad&iacute;sticas Pa&iacute;s Vasco', '
 <h1>Estad&iacute;sticas</h1>
 <h2>EUSTAT</h2>
 <ul>
@@ -1104,3 +1087,8 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
 (148, 149),(148, 150),(148, 151),(148, 152),(148, 153),(148, 154),(148, 155),(148, 156),(148, 157),(148, 158),
 (148, 159),(148, 160),(148, 161),(148, 162),(148, 163),(148, 164),(148, 165),(148, 166),(148, 167);
+
+-- Asocio las paginas de estadisticas a cada comunidad
+Insert into ENLACES_PAGINAS_ESTATICAS (	ID_PAGINA_PADRE, ID_PAGINA_HIJA) values
+(2, 149),(3,165),(4,159),(5,154),(6,158),(7,163),(8,155),(9,150),(10,156),(11,162),(12,166),(13,167),(14,153),(15,151),(16,160),(17,157),(17,164),(18,161),(19, 152);
+
