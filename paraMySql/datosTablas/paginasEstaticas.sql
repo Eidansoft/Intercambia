@@ -593,8 +593,9 @@ Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA, TIPO) values
 (144, 'Estad&iacute;sticas', '
 <h2>&iquest;Qu&eacute; es&#63;</h2>
 Esta secci&oacute;n ofrece una selecci&oacute;n de fuentes estad&iacute;sticas en materia coeducativa y de igualdad de oportunidades en cuatro &aacute;mbitos: internacional, europeo, estatal y auton&oacute;mico. Adem&aacute;s aparecen documentos de inter&eacute;s descargables en formato pdf.
-	',	'Estad&iacute;sticas', 'page'),
+	',	'Estad&iacute;sticas', 'page');
 
+Insert into PAGINAS_ESTATICAS (ID,TITULO,CONTENIDO,CATEGORIA) values
 (145, '&Aacute;mbito Internacional', '
 <ul>
 	<li><a href="http://www.uis.unesco.org/Education/Pages/gender-education.aspx">UNESCO: Publicaciones sobre g&eacute;nero y educaci&oacute;n.</a> Incluye el <a href="http://www.unesco.org/new/en/education/themes/leading-the-international-agenda/gender-and-education/resources/the-world-atlas-of-gender-equality-in-education/">Atlas sobre la Igualdad de G&eacute;nero en la Educaci&oacute;n</a>, informe sobre la situaci&oacute;n educativa de mujeres y hombres a lo largo de todo el mundo, con datos, cifras, gr&aacute;ficos, mapas y an&aacute;lisis en relaci&oacute;n al acceso y permanencia en los diferentes niveles educativos. Asimismo, ofrece <a href="http://www.uis.unesco.org/Education/Pages/unesco-e-atlas-launch.aspx">publicaciones sobre la investigaci&oacute;n y el desarrollo experimental, las ni&ntilde;as y ni&ntilde;os sin escolarizar y el profesorado en el mundo</a> (algunas de ellas en espa&ntilde;ol).</li>
